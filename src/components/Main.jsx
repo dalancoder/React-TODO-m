@@ -8,20 +8,33 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-const Main = ({setBaslik, setDate1, baslik, date1}) => {
+const Main = ({info, setInfo, handleAddList}) => {
+  const [baslik, setBaslik] = useState("");
+  const [date, setDate] = useState(null);
 
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-  console.log(baslik, date1);
+   let newInfo = {
+id:new Date().getTime(),
+baslik:baslik,
+date:date,
+isImportant:false,
+isChecked:false
+   }
+console.log(baslik, date);
+   handleAddList(newInfo)
+
+
   };
 
 
   return (
     <div>
       <Box
-        value={baslik}
+       
         onSubmit={handleSubmit}
         component="form"
         sx={{
@@ -33,7 +46,8 @@ const Main = ({setBaslik, setDate1, baslik, date1}) => {
         autoComplete="off"
       >
         <TextField
-          onChange={(e) => setBaslik(e.target.value)}
+         value={baslik}
+          onChange={(e)=> setBaslik(e.target.value)}
           id="standard-basic"
           label="Başlık"
           variant="standard"
@@ -41,8 +55,8 @@ const Main = ({setBaslik, setDate1, baslik, date1}) => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           {/* <DemoContainer components={['DatePicker']}> */}
           <DatePicker
-           value={date1}
-            onChange={(newDate) => setDate1(newDate)}
+          //  value={}
+            onChange={(newDate)=>setDate(newDate)}
             label="Tarih"
             renderInput={(params) => <input {...params} />}
           />
