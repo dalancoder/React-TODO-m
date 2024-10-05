@@ -1,5 +1,9 @@
 
+import { Container } from '@mui/material';
 import './App.css';
+import Header from './components/Header';
+
+import TodoProvider from './context/TodoProvider';
 
 
 
@@ -7,9 +11,11 @@ import './App.css';
 function App() {
  
   return (
-<div>
+<Container  >
+<Header/>
 
-</div>
+
+</Container>
  
   )
 }

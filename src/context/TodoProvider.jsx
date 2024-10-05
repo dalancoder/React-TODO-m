@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { createContext } from 'react'
 
-const TodoProvider = () => {
+
+export const TodoContext=createContext()
+
+
+const TodoProvider = ({children}) => {
   return (
-    <div>TodoProvider</div>
+    <TodoContext.Provider value={{}}>
+      
+    </TodoContext.Provider>
   )
 }
 
