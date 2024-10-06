@@ -8,6 +8,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import dayjs from 'dayjs';
 
 const MainList = ({info, setInfo}) => {
+  
+  const [show, setShow]=useState(null)
  
 
 
@@ -20,7 +22,7 @@ const MainList = ({info, setInfo}) => {
 {
   info.map((item)=>(
     <>
-<Stack direction="row" sx={{display:"flex",justifyContent:"space-around", gap:"1rem"}}>
+<Stack key={item.id} onMouseOver={()=>setShow(item.id)} onMouseLeave={()=>setShow(null)} direction="row" sx={{display:"flex", justifyContent:"space-between", gap:"1rem"}}>
 
       <Box sx={{display:"flex",gap:"2rem"}}>
         <CheckCircleIcon onClick={()=>{
@@ -32,12 +34,14 @@ const MainList = ({info, setInfo}) => {
    }} sx={{cursor:"pointer", ...(item.isImportant && {color:"red"})}} />
     </Box>
    
-   <Box variant="p" sx={{...(info.isChecked && {textDecoration:"line-through"})}} >{item.baslik}</Box>
-   <Box variant="p" >{dayjs(item.date).format("MM-DD-YYYY")}</Box>
+   <Box variant="p" sx={{...(item.isChecked && {textDecoration:"line-through",  textDecorationColor: "green", textDecorationThickness: "3px"})}} >{item.baslik}</Box>
+   <Box variant="p" sx={{...(item.isChecked && {textDecoration:"line-through", textDecorationColor: "green", textDecorationThickness: "3px"})}} >{dayjs(item.date).format("MM-DD-YYYY")}</Box>
 
    <Box sx={{display:"flex",gap:"2rem"}}>
-     <EditIcon/>
-   <DeleteForeverIcon/>
+
+     <DeleteForeverIcon sx={{...(show !== item.id && {display:"none"})}} />
+     <EditIcon  />
+ 
    </Box>
     
    
