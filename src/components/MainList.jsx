@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import dayjs from 'dayjs';
 
-const MainList = ({info, setInfo}) => {
+const MainList = ({info, setInfo, handleDelete}) => {
   
   const [show, setShow]=useState(null)
  
@@ -39,7 +39,7 @@ const MainList = ({info, setInfo}) => {
 
    <Box sx={{display:"flex",gap:"2rem"}}>
 
-     <DeleteForeverIcon sx={{...(show !== item.id && {display:"none"})}} />
+     <DeleteForeverIcon onClick={()=>handleDelete(item.id)} sx={{cursor:"pointer",color:"gray",...(show !== item.id && {display:"none"})}} />
      <EditIcon  />
  
    </Box>

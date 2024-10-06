@@ -27,8 +27,11 @@ isChecked:false
 console.log(baslik, date);
    handleAddList(newInfo)
 
+   setBaslik("");
+   setDate(null)
 
   };
+
 
 
   return (
