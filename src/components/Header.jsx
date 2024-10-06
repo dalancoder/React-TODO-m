@@ -5,14 +5,14 @@ import MainList from "./MainList";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  
+  const [change, setChange]=useState(true)
 
   const [info, setInfo]=useState([])
   const [filteredInfo, setFilteredInfo] = useState([]);
 
 const handleAddList = (newInfo)=>{
 setInfo([...info, newInfo])
-setFilteredInfo([...info, newInfo])
+setFilteredInfo([...info, newInfo]) // her filterda silinmemesi için yedekli çalıstım
 }
 const handleDelete = (id)=>{
 
@@ -41,12 +41,19 @@ const handleDelete = (id)=>{
 }
 const handleChecked=()=>{
   setFilteredInfo(info.filter((item) => item.isChecked))
+  setChange(false)
 }
 const handleNotChecked = ()=>{
   setFilteredInfo(info.filter((item) => !item.isChecked))
+  setChange(false)
+}
+const handleImportant = ()=>{
+  setFilteredInfo(info.filter((item)=>item.isImportant))
+  setChange(false)
 }
 const handleShowAll =()=>{
   setFilteredInfo([...info])
+  setChange(true)
 
 }
 
@@ -73,14 +80,14 @@ const handleShowAll =()=>{
           <Stack spacing={2} direction="row" display={"flex"} flexWrap={"wrap"}>
             <Button onClick={handleChecked} variant="outlined">Tamamlandı:{info.filter((item)=>item.isChecked).length}</Button>
             <Button onClick={handleNotChecked} variant="outlined">Tamamlanmadı:{info.filter((item)=>!item.isChecked).length}</Button>
-          <Button variant="outlined">Önemli:{info.filter((item)=>item.isImportant).length}</Button>
+          <Button onClick={handleImportant} variant="outlined">Önemli:{info.filter((item)=>item.isImportant).length}</Button>
           <Button onClick={handleShowAll} variant="outlined">Tüm Görevler:{info.length}</Button>
             
             
           </Stack>
           
         <Main info={info} setInfo={setInfo} handleAddList={handleAddList} />
-        <MainList info={filteredInfo}  setInfo={setInfo} handleDelete={handleDelete}/>
+        <MainList change={change} setChange={setChange} info={filteredInfo} setFilteredInfo={setFilteredInfo}  setInfo={setInfo} handleDelete={handleDelete}/>
         </Box>
 
         <Box sx={{ gridColumn: '5', gridRow: '1 /16 ', display: "flex", flexDirection: "column", height: "80vh",width:"15vw"}}>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import EditTask from './EditTask'
-import { Box, Container, Stack } from '@mui/material'
+import { Box, Button, Container, Stack } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import dayjs from 'dayjs';
 
-const MainList = ({info, setInfo, handleDelete}) => {
+const MainList = ({info, setInfo, handleDelete,setFilteredInfo, change, setChange}) => {
   
   const [show, setShow]=useState(null)
  
@@ -25,13 +25,29 @@ const MainList = ({info, setInfo, handleDelete}) => {
 <Stack key={item.id} onMouseOver={()=>setShow(item.id)} onMouseLeave={()=>setShow(null)} direction="row" sx={{display:"flex", justifyContent:"space-between", gap:"1rem"}}>
 
       <Box sx={{display:"flex",gap:"2rem"}}>
-        <CheckCircleIcon onClick={()=>{
-    const updatedCheck=info.map((task)=> task.id === item.id ? {...task, isChecked: !task.isChecked}:task);
-    setInfo(updatedCheck); }} sx={{cursor:"pointer", ...(item.isChecked && {color:"green"})}} />
-   <StarRateIcon onClick={()=>{
+    
+        <Button disabled={!change}>
+          <CheckCircleIcon onClick={()=>{
+          
+          const updatedCheck=info.map((task)=> task.id === item.id ? {...task, isChecked: !task.isChecked}:task);
+    setInfo(updatedCheck); setFilteredInfo(updatedCheck)
+          
+     }} sx={{cursor:"pointer", ...( item.isChecked && {color:"green"})}} />
+        </Button>
+         
+<Button  disabled={!change}>
+  <StarRateIcon onClick={()=>{
     const updatedInfo=info.map((task)=> task.id === item.id ? {...task, isImportant: !task.isImportant}:task);
-    setInfo(updatedInfo);
-   }} sx={{cursor:"pointer", ...(item.isImportant && {color:"red"})}} />
+    setInfo(updatedInfo); setFilteredInfo(updatedInfo);
+   }} sx={{cursor:"pointer", ...(item.isImportant && {color:"orange"})}} /> 
+     
+</Button>
+             
+   
+
+
+      
+
     </Box>
    
    <Box variant="p" sx={{...(item.isChecked && {textDecoration:"line-through",  textDecorationColor: "green", textDecorationThickness: "3px"})}} >{item.baslik}</Box>
@@ -39,8 +55,8 @@ const MainList = ({info, setInfo, handleDelete}) => {
 
    <Box sx={{display:"flex",gap:"2rem"}}>
 
-     <DeleteForeverIcon onClick={()=>handleDelete(item.id)} sx={{cursor:"pointer",color:"gray",...(show !== item.id && {display:"none"})}} />
-     <EditIcon  />
+     <DeleteForeverIcon onClick={()=>handleDelete(item.id)} sx={{cursor:"pointer","&:hover":{color:"red"},...(show !== item.id && {display:"none"})}} />
+     <EditIcon sx={{cursor:"pointer", color:"gray", "&:hover":{color:"yellowgreen"}}} />
  
    </Box>
     
