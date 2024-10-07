@@ -22,13 +22,14 @@ id:new Date().getTime(),
 baslik:baslik,
 date:date,
 isImportant:false,
-isChecked:false
+isChecked:false,
+isDate:dayjs().format('MM-DD-YYYY') === dayjs(date).format("MM-DD-YYYY")
    }
-console.log(baslik, date);
+console.log(newInfo.isDate);
    handleAddList(newInfo)
 
    setBaslik("");
-   setDate(null)
+   setDate("")
 
   };
 
@@ -56,14 +57,23 @@ console.log(baslik, date);
           variant="standard"
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {/* <DemoContainer components={['DatePicker']}> */}
+       
           <DatePicker
-          //  value={}
+           value={dayjs(date)}
             onChange={(newDate)=>setDate(newDate)}
             label="Tarih"
-            renderInput={(params) => <input {...params} />}
+            // renderInput={(params) => <input {...params} />}
+            // error={false}
+            sx={{color: '#1565c0',
+          borderRadius: '12px',
+          borderWidth: '0px',
+          borderColor: '#2196f3',
+          border: '0px solid',
+         }}
+      //      
+           
           />
-          {/* </DemoContainer> */}
+       
         </LocalizationProvider>
 
         <Button
