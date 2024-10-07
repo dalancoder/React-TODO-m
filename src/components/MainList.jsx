@@ -21,7 +21,7 @@ const MainList = ({info, setInfo, handleDelete,setFilteredInfo, change}) => {
 {
   info.map((item)=>(
     <>
-<Stack key={item.id} onMouseOver={()=>setShow(item.id)} onMouseLeave={()=>setShow(null)} direction="row" sx={{ borderRadius:"10px", display:"flex", justifyContent:"space-between",backgroundColor:"lightGray", mt:"1rem"}}>
+<Stack key={item.id} onMouseOver={()=>setShow(item.id)} onMouseLeave={()=>setShow(null)} direction="row" sx={{ borderRadius:"10px", display:"flex", justifyContent:"space-between",alignItems:"center", paddingRight:"10px", backgroundColor:"lightGray", mt:"1rem"}}>
 
       <Box sx={{display:"flex",gap:"2rem"}}>
     
@@ -49,13 +49,19 @@ const MainList = ({info, setInfo, handleDelete,setFilteredInfo, change}) => {
 
     </Box>
    
-   <Box variant="p" sx={{display:"flex",justifyContent:"center", alignItems:"center",...(item.isChecked && {textDecoration:"line-through",  textDecorationColor: "green", textDecorationThickness: "3px"})}} >{item.baslik}</Box>
+   <Box variant="p" sx={{display:"flex",justifyContent:"center", alignItems:"center", 
+    overflowWrap: 'break-word', 
+    whiteSpace: 'pre-wrap' ,...(item.isChecked && {textDecoration:"line-through",  textDecorationColor: "green", textDecorationThickness: "3px"})}} >{item.baslik}</Box>
    <Box variant="p" sx={{display:"flex",justifyContent:"center", alignItems:"center",...(item.isChecked && {textDecoration:"line-through", textDecorationColor: "green", textDecorationThickness: "3px"}),...(item.isImportant && {color:"darkViolet", fontWeight:"bold"})}} >{dayjs(item.date).format("MM-DD-YYYY")}</Box>
 
    <Box sx={{display:"flex",gap:"2rem"}}>
-
-     <DeleteForeverIcon onClick={()=>handleDelete(item.id)} sx={{cursor:"pointer","&:hover":{color:"red"},...(show !== item.id && {display:"none"})}} />
-     <EditIcon sx={{cursor:"pointer", color:"gray", "&:hover":{color:"yellowgreen"}}} />
+<Box>
+   <DeleteForeverIcon onClick={()=>handleDelete(item.id)} sx={{cursor:"pointer","&:hover":{color:"red"},...(show !== item.id && {display:"none"})}} />
+</Box>
+    <Box>
+       <EditIcon sx={{cursor:"pointer", color:"gray", "&:hover":{color:"yellowgreen"}}} />
+    </Box>
+    
  
    </Box>
     

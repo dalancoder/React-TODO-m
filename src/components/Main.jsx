@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-const Main = ({info, setInfo, handleAddList}) => {
+const Main = ({handleAddList, change}) => {
   const [baslik, setBaslik] = useState("");
   const [date, setDate] = useState(null);
 
@@ -42,14 +42,16 @@ console.log(newInfo.isDate);
         onSubmit={handleSubmit}
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { m: 1, width:{xs:"10ch", sm:"20ch", md:"25ch", lg:"30ch"}},
           display: "flex",
           alignItems: "center",
+          border:"2px solid gray"
         }}
         noValidate
         autoComplete="off"
       >
         <TextField
+  
          value={baslik}
           onChange={(e)=> setBaslik(e.target.value)}
           id="standard-basic"
@@ -77,10 +79,11 @@ console.log(newInfo.isDate);
         </LocalizationProvider>
 
         <Button
-     
+     disabled={!change}
           type="submit"
           variant="contained"
           startIcon={<AddIcon />}
+          sx={{backgroundColor:"lightyellow", color:"black", border:"none", borderRadius:"8px", fontWeight:"bold"}}
         >
           Görev Ekle
         </Button>

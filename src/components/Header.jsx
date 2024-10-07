@@ -62,76 +62,67 @@ const Header = () => {
   };
  
   return (
-    <Box>
+    <Box sx={{border:"2px solid blueviolet"}}>
       <Typography variant="h1" sx={{ textAlign: "center" }}>
         TO DO LIST
       </Typography>
-      <Box
-        sx={{
-          display: "grid",
-          gridAutoFlow: "row",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gridTemplateRows: "repeat(17, 30px)",
-          gap: 1,
-          justifyContent: "center",
-        }}
-      >
+
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "start",
-            width: "75vw",
+            border:"2px solid blue",
+            display:"flex",
+       flexWrap:"wrap",
+       justifyContent:"center",
+      // alignItems:"baseline",
+       gap: "1rem",
+       
+            width: "100%",
             height: "80vh",
-            py: 2,
+            
           }}
         >
-          <Stack spacing={2} direction="row" display={"flex"} flexWrap={"wrap"}>
-            <Button onClick={handleChecked} variant="outlined">
-              Tamamlandı:{info.filter((item) => item.isChecked).length}
+          <Stack sx={{border:"2px solid red", justifyContent:"center", alignItems:"center", gap:"1rem", height:"50px"}}  direction="row" display={"flex"} flexWrap={"wrap"}>
+            <Button sx={{backgroundColor:"black", color:"lightyellow", border:"none", borderRadius:"8px"}} onClick={handleChecked} variant="outlined">
+              Tamamlandı: {info.filter((item) => item.isChecked).length}
             </Button>
-            <Button onClick={handleNotChecked} variant="outlined">
-              Tamamlanmadı:{info.filter((item) => !item.isChecked).length}
+            <Button sx={{backgroundColor:"black", color:"lightyellow", border:"none", borderRadius:"8px"}} onClick={handleNotChecked} variant="outlined">
+              Tamamlanmadı: {info.filter((item) => !item.isChecked).length}
             </Button>
-            <Button onClick={handleImportant} variant="outlined">
-              Önemli:{info.filter((item) => item.isImportant).length}
+            <Button sx={{backgroundColor:"black", color:"lightyellow", border:"none", borderRadius:"8px"}} onClick={handleImportant} variant="outlined">
+              Önemli: {info.filter((item) => item.isImportant).length}
             </Button>
-            <Button onClick={handleShowAll} variant="outlined">
-              Tüm Görevler:{info.length}
+            <Button sx={{backgroundColor:"black", color:"lightyellow", border:"none", borderRadius:"8px"}} onClick={handleShowAll} variant="outlined">
+              Tüm Görevler: {info.length}
             </Button>
+
+          
+           <Button sx={{backgroundColor:"black", color:"lightyellow", border:"none", borderRadius:"8px"}} onClick={handleDate}
+             > Bugünün Görevleri: {info.filter((item)=>item.isDate).length} 
+
+   </Button>
+      
           </Stack>
 
-          <Main info={info} setInfo={setInfo} handleAddList={handleAddList} />
+          <Main info={info} setInfo={setInfo} handleAddList={handleAddList} change={change} />
           <MainList
             change={change}
             info={filteredInfo}
             setFilteredInfo={setFilteredInfo}
             setInfo={setInfo}
             handleDelete={handleDelete}
+
+            
             
           />
+
+
+          
         </Box>
     
-          <Box
-           
-            sx={{
-              gridColumn: "5",
-              gridRow: "1 /16 ",
-              display: "flex",
-              flexDirection: "column",
-              height: "80vh",
-              width: "15vw",
-            }}
-          >
-            <Button onClick={handleDate}
-              > Bugünün Görevleri: {info.filter((item)=>item.isDate).length} 
-
-    </Button>
-          </Box>
+     
     
       </Box>
-    </Box>
+  
   );
 };
 
