@@ -1,10 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import dayjs from "dayjs";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const style = {
   position: "absolute",
@@ -18,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function EditTask({ open, handleClose, info1, edit, setEdit, handleSubmit }) {
+export default function EditTask({ open, handleClose,  edit, setEdit, handleSubmit }) {
 const handleEdit= (e)=>{
   setEdit({...edit, [e.target.name]:e.target.value})
 console.log(edit);
@@ -34,7 +35,10 @@ console.log(edit);
         <Box sx={style}>
           <TextField id="standard-basic" name="baslik" label="Başlık" variant="standard" value={edit.baslik} onChange={handleEdit} />
 
-          <TextField id="standard-basic" name="date" label="Tarih" variant="standard" value={dayjs(edit.date).format("MM-DD-YYYY")} onChange={handleEdit}/>
+          {/* <TextField id="standard-basic" name="date" label="Tarih" variant="standard" value={dayjs(edit.date).format("MM-DD-YYYY")} onChange={handleEdit}/> */}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker name="date" label="Tarih" variant="standard"  onChange={handleEdit} />
+    </LocalizationProvider>
           <Box>
             <Button onClick={handleSubmit} >Kaydet</Button>
           </Box>

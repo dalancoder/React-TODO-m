@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import EditTask from "./EditTask";
 import { Box, Button, Container, lighten, Stack } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -6,8 +6,10 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import dayjs from "dayjs";
+import { TodoContext } from "../context/TodoProvider";
 
-const MainList = ({ info, info1, setInfo, handleDelete, setFilteredInfo, change }) => {
+const MainList = () => {
+  const {filteredInfo, info, setInfo, handleDelete, setFilteredInfo, change} = useContext(TodoContext)
   const [show, setShow] = useState(null);
 
   const [edit, setEdit]=useState("")
@@ -19,15 +21,14 @@ const MainList = ({ info, info1, setInfo, handleDelete, setFilteredInfo, change 
 
   const handleSubmit = (e)=>{
 e.preventDefault()
-const editInfo=info.filter((item)=> item.id !== edit.id)
-console.log(editInfo);
+const updatedInfo = info.map((item) => 
+  item.id === edit.id ? edit : item
+);
 
 
-setInfo(editInfo)
-setFilteredInfo(editInfo)
-setInfo([...info1, edit])
+setInfo(updatedInfo)
+setFilteredInfo(updatedInfo)
 
-setFilteredInfo([...info, edit])
 handleClose()
 
 
@@ -37,7 +38,7 @@ handleClose()
   return (
     <Container>
       <Box variant="" sx={{ textAlign: "center" }}>
-        {info.map((item) => (
+        {filteredInfo.map((item) => (
           <>
             <Stack
               key={item.id}
@@ -58,7 +59,7 @@ handleClose()
                 <Button disabled={!change} sx={{ color: "black" }}>
                   <CheckCircleIcon
                     onClick={() => {
-                      const updatedCheck = info.map((task) =>
+                      const updatedCheck = filteredInfo.map((task) =>
                         task.id === item.id
                           ? { ...task, isChecked: !task.isChecked }
                           : task
@@ -76,7 +77,7 @@ handleClose()
                 <Button disabled={!change} sx={{ color: "black" }}>
                   <StarRateIcon
                     onClick={() => {
-                      const updatedInfo = info.map((task) =>
+                      const updatedInfo = filteredInfo.map((task) =>
                         task.id === item.id
                           ? { ...task, isImportant: !task.isImportant }
                           : task
@@ -158,7 +159,7 @@ handleClose()
           </>
         ))}
       </Box>
-      <EditTask open={open} edit={edit} info1={info1} setEdit={setEdit} handleClose={handleClose} handleSubmit={handleSubmit} />
+      <EditTask open={open} edit={edit} info={info} setEdit={setEdit} handleClose={handleClose} handleSubmit={handleSubmit} />
     </Container>
   );
 };

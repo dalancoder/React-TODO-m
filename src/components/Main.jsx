@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState }  from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, TextField } from "@mui/material";
 
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
+import { TodoContext } from "../context/TodoProvider";
 
-const Main = ({handleAddList, change}) => {
+const Main = () => {
+
+  const { handleAddList, change} =useContext(TodoContext)
+
+
+
   const [baslik, setBaslik] = useState("");
   const [date, setDate] = useState(null);
 
@@ -64,15 +69,14 @@ console.log(newInfo.isDate);
            value={dayjs(date)}
             onChange={(newDate)=>setDate(newDate)}
             label="Tarih"
-            // renderInput={(params) => <input {...params} />}
-            // error={false}
+          
             sx={{color: '#1565c0',
           borderRadius: '12px',
           borderWidth: '0px',
           borderColor: '#2196f3',
           border: '0px solid',
          }}
-      //      
+          
            
           />
        
