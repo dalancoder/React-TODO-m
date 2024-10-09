@@ -1,7 +1,7 @@
 
 
 import './App.css';
-import Header from './components/Header';
+import Header from './components/Header'
 
 import TodoProvider from './context/TodoProvider';
 
