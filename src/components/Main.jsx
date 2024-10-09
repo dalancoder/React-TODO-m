@@ -10,12 +10,12 @@ import { TodoContext } from "../context/TodoProvider";
 
 const Main = () => {
 
-  const { handleAddList, change} =useContext(TodoContext)
+  const { handleAddList,setDate,date, change} =useContext(TodoContext)
 
 
 
   const [baslik, setBaslik] = useState("");
-  const [date, setDate] = useState(null);
+  
 
  
 

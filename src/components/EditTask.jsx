@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 import dayjs from "dayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TodoContext } from "../context/TodoProvider";
 
 const style = {
   position: "absolute",
@@ -20,6 +21,8 @@ const style = {
 };
 
 export default function EditTask({ open, handleClose,  edit, setEdit, handleSubmit }) {
+
+  const{setDate}=React.useContext(TodoContext)
 const handleEdit= (e)=>{
   setEdit({...edit, [e.target.name]:e.target.value})
 console.log(edit);
@@ -37,8 +40,24 @@ console.log(edit);
 
           {/* <TextField id="standard-basic" name="date" label="Tarih" variant="standard" value={dayjs(edit.date).format("MM-DD-YYYY")} onChange={handleEdit}/> */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker name="date" label="Tarih" variant="standard"  onChange={handleEdit} />
-    </LocalizationProvider>
+       
+          <DatePicker
+           value={dayjs(edit.date)}
+            onChange={(newDate)=>setEdit(newDate)}
+            label="Tarih"
+            name="date"
+          
+            sx={{color: '#1565c0',
+          borderRadius: '12px',
+          borderWidth: '0px',
+          borderColor: '#2196f3',
+          border: '0px solid',
+         }}
+          
+           
+          />
+       
+        </LocalizationProvider>
           <Box>
             <Button onClick={handleSubmit} >Kaydet</Button>
           </Box>

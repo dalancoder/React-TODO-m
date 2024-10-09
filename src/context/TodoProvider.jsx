@@ -13,6 +13,8 @@ const TodoProvider = ({children}) => {
   const [filteredInfo, setFilteredInfo] = useState([]);
 
 
+  const [date, setDate] = useState(null);
+
     
 
   const handleAddList = (newInfo) => {
@@ -66,7 +68,7 @@ const TodoProvider = ({children}) => {
   };
 
   return (
-    <TodoContext.Provider value={{info, setInfo, filteredInfo, setFilteredInfo, handleAddList, change, handleDelete, handleChecked, handleNotChecked, handleImportant, handleShowAll, handleDate }}>
+    <TodoContext.Provider value={{info, setInfo, filteredInfo, setFilteredInfo, handleAddList, change, handleDelete, handleChecked, handleNotChecked, handleImportant, handleShowAll, handleDate,setDate, date }}>
     {children}  
     </TodoContext.Provider>
   )
