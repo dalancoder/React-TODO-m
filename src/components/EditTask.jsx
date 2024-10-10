@@ -38,7 +38,7 @@ console.log(edit);
         <Box sx={style}>
           <TextField id="standard-basic" name="baslik" label="Başlık" variant="standard" value={edit.baslik} onChange={handleEdit} />
 
-          {/* <TextField id="standard-basic" name="date" label="Tarih" variant="standard" value={dayjs(edit.date).format("MM-DD-YYYY")} onChange={handleEdit}/> */}
+    
           <LocalizationProvider dateAdapter={AdapterDayjs}>
        
           <DatePicker
