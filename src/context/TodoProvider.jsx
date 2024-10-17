@@ -19,7 +19,9 @@ const TodoProvider = ({children}) => {
 
   const handleAddList = (newInfo) => {
     setInfo([...info, newInfo]);
+    
     setFilteredInfo([...info, newInfo]); // her filterda silinmemesi için yedekli çalıstım
+    
   };
   const handleDelete = (id) => {
     Swal.fire({
@@ -40,7 +42,9 @@ const TodoProvider = ({children}) => {
         });
         const updatedInfo = info.filter((item) => item.id !== id);
         setInfo(updatedInfo);
+
         setFilteredInfo(updatedInfo);
+    
       }
     });
   };

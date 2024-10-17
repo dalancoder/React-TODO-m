@@ -39,7 +39,7 @@ console.log(edit);
           <TextField id="standard-basic" name="baslik" label="Başlık" variant="standard" value={edit.baslik} onChange={handleEdit} />
 
     
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
        
           <DatePicker
            value={dayjs(edit.date)}
@@ -57,7 +57,7 @@ console.log(edit);
            
           />
        
-        </LocalizationProvider>
+        </LocalizationProvider> */}
           <Box>
             <Button onClick={handleSubmit} >Kaydet</Button>
           </Box>

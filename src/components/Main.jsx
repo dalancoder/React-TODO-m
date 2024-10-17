@@ -50,7 +50,10 @@ console.log(newInfo.isDate);
           "& > :not(style)": { m: 1, width:{xs:"10ch", sm:"20ch", md:"25ch", lg:"30ch"}},
           display: "flex",
           alignItems: "center",
-          border:"2px solid gray"
+          borderRadius:"20px"
+          , backgroundColor:"#FAFAE9" ,
+          boxShadow:"0px 0px 5px gray",
+          "padding":{md:"10px 80px"}
         }}
         noValidate
         autoComplete="off"
@@ -62,6 +65,7 @@ console.log(newInfo.isDate);
           id="standard-basic"
           label="Başlık"
           variant="standard"
+          sx={{boxShadow:"5px 5px 5px gray"}}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
        
@@ -72,9 +76,7 @@ console.log(newInfo.isDate);
           
             sx={{color: '#1565c0',
           borderRadius: '12px',
-          borderWidth: '0px',
-          borderColor: '#2196f3',
-          border: '0px solid',
+         boxShadow:"5px 5px 5px gray"
          }}
           
            
@@ -87,7 +89,7 @@ console.log(newInfo.isDate);
           type="submit"
           variant="contained"
           startIcon={<AddIcon />}
-          sx={{backgroundColor:"lightyellow", color:"black", border:"none", borderRadius:"8px", fontWeight:"bold"}}
+          sx={{backgroundColor:"lightyellow", color:"black", border:"none", borderRadius:"8px", fontWeight:"bold", boxShadow:"5px 5px 5px gray"}}
         >
           Görev Ekle
         </Button>

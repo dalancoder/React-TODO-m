@@ -37,7 +37,7 @@ handleClose()
 
   return (
     <Container>
-      <Box variant="" sx={{ textAlign: "center" }}>
+      <Box variant="" sx={{ textAlign: "center"}}>
         {filteredInfo.map((item) => (
           <>
             <Stack
@@ -105,6 +105,10 @@ handleClose()
                     textDecoration: "line-through",
                     textDecorationColor: "green",
                     textDecorationThickness: "3px",
+                  }),
+                  ...(item.isImportant && {
+                    color: "darkViolet",
+                    fontWeight: "bold",
                   }),
                 }}
               >

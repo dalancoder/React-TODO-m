@@ -3,6 +3,7 @@ import React, { useContext} from "react";
 import Main from "./Main";
 import MainList from "./MainList";
 import { TodoContext } from "../context/TodoProvider";
+import { blueGrey } from "@mui/material/colors";
 
 const Header = () => {
   const {
@@ -16,14 +17,14 @@ const Header = () => {
 
 
   return (
-    <Box sx={{ border: "2px solid blueviolet" }}>
-      <Typography variant="h1" sx={{ textAlign: "center" }}>
+    <Box >
+      <Typography variant="h1" sx={{ textAlign: "center", fontFamily:"mono", m:"15px" , backgroundColor:"#FAFAE9", color:"orange", boxShadow:"0px 0px 5px 5px gray", borderRadius:"15px", textShadow:"2px 2px 5px gray"}}>
         TO DO LIST
       </Typography>
 
       <Box
         sx={{
-          border: "2px solid blue",
+          
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
@@ -36,7 +37,7 @@ const Header = () => {
       >
         <Stack
           sx={{
-            border: "2px solid red",
+            
             justifyContent: "center",
             alignItems: "center",
             gap: "1rem",
@@ -47,8 +48,10 @@ const Header = () => {
         >
           <Button
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "darkorange",
+              "&: hover":{boxShadow:"0 0 5px 3px gray", color:"darkorange", backgroundColor:"lightyellow", fontWeight:"900"},
               color: "lightyellow",
+              textShadow:"1px 1px 1px darkgray",
               border: "none",
               borderRadius: "8px",
             }}
@@ -59,8 +62,10 @@ const Header = () => {
           </Button>
           <Button
             sx={{
-              backgroundColor: "black",
+             backgroundColor: "darkorange",
+              "&: hover":{boxShadow:"0 0 5px 3px gray", color:"darkorange", backgroundColor:"lightyellow", fontWeight:"900"},
               color: "lightyellow",
+              textShadow:"1px 1px 1px darkgray",
               border: "none",
               borderRadius: "8px",
             }}
@@ -71,8 +76,10 @@ const Header = () => {
           </Button>
           <Button
             sx={{
-              backgroundColor: "black",
+             backgroundColor: "darkorange",
+              "&: hover":{boxShadow:"0 0 5px 3px gray", color:"darkorange", backgroundColor:"lightyellow", fontWeight:"900"},
               color: "lightyellow",
+              textShadow:"1px 1px 1px darkgray",
               border: "none",
               borderRadius: "8px",
             }}
@@ -83,8 +90,10 @@ const Header = () => {
           </Button>
           <Button
             sx={{
-              backgroundColor: "black",
+             backgroundColor: "darkorange",
+              "&: hover":{boxShadow:"0 0 5px 3px gray", color:"darkorange", backgroundColor:"lightyellow", fontWeight:"900"},
               color: "lightyellow",
+              textShadow:"1px 1px 1px darkgray",
               border: "none",
               borderRadius: "8px",
             }}
@@ -96,8 +105,10 @@ const Header = () => {
 
           <Button
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "darkorange",
+              "&: hover":{boxShadow:"0 0 5px 3px gray", color:"darkorange", backgroundColor:"lightyellow", fontWeight:"900"},
               color: "lightyellow",
+              textShadow:"1px 1px 1px darkgray",
               border: "none",
               borderRadius: "8px",
             }}
